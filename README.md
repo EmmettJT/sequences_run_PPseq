@@ -6,6 +6,12 @@ Emmett J Thompson
 
 # Steps...
 1. this pipeline assumes data has been preprocessed using the following repo: https://github.com/EmmettJT/sequences_neuropixel_preprocess
+2. ff
+3. ff
+4. run prepare data script to generate PPseq input files
+5. f
+6. f
+7. 
 
 
 
