@@ -6,4 +6,9 @@ Emmett J Thompson
 
 # Steps...
 1. this pipeline assumes data has been preprocessed using the following repo: https://github.com/EmmettJT/sequences_neuropixel_preprocess
-2. 
+
+
+
+Clone the PPseq repo: https://github.com/EmmettJT/sequences_PPseq/tree/emmett
+
+Make sure you are on the branch 'emmett'
