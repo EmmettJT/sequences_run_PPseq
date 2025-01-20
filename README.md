@@ -15,6 +15,10 @@ Emmett J Thompson
 
 
 
-Clone the PPseq repo: https://github.com/EmmettJT/sequences_PPseq/tree/emmett
+Clone the PPseq repo:
+https://github.com/EmmettJT/sequences_PPseq/tree/emmett
+clone in the submodule PPseq:
+git submodule update --init --recursive
+
 
 Make sure you are on the branch 'emmett'
