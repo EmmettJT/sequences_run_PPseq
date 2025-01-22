@@ -13,9 +13,7 @@ The aim of this repo is as follows
 2. Produce the input files PPseq needs in order to run
 3. Execute a run of PPseq in awake or replay mode
 
-
-## fyi:
-This pipeline assumes data has been preprocessed using the following repo: https://github.com/EmmettJT/sequences_neuropixel_preprocess
+**This pipeline assumes data has been preprocessed using the following repo: https://github.com/EmmettJT/sequences_neuropixel_preprocess
 The scripts are expecting certain files and a certain file structure to exist already. 
 
 ## File structure: 
