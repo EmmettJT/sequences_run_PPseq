@@ -63,14 +63,16 @@ organised_data
         │   └── ...
         └── ...
 ```
-
-the final shared files across all recordings: 
+----
+## The final shared files across all recordings: 
 
 #### behav_sync
-- contains folders for each experimetnal section. these folders contain dataframes which align the three experimental clocks - ephys, video and behavioural data.  
+- contains folders for each experimetnal section. these folders contain dataframes which align the three experimental clocks - ephys, video and behavioural data.
+
 #### ephys
 - contains preprocessed data for each probe including kiolosort output
-- importnalty, for these scripts this folder contains good and mua spike clusters - dataframes with unit id, spikes times, unit depth and the region this unit was found in (eg. striatum, m_cortrex...) 
+- importnalty, for these scripts this folder contains good and mua spike clusters - dataframes with unit id, spikes times, unit depth and the region this unit was found in (eg. striatum, m_cortrex...)
+- 
 #### video 
 - contains a file with the raw video files (wit their uncycled timestamp/trigger time dataframes)
 - contains a file with tracking data for each video (and each tracking type) 
