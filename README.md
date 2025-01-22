@@ -5,21 +5,21 @@ Processing pipeline for prepareing data for a PPseq run and executing a PPseq ru
 Emmett J Thompson
 
 
-# Aim
+# What does this repo do?
 The aim of this repo is as follows
 1. Take processed data use it to decide on a timing range in which to run ppseq, 
 2. Produce the input files PPseq needs in order to run
-3. Execute a run of PPseq
+3. Execute a run of PPseq in awake or replay mode
 
 
 # Steps
 
-## 1 Performance for PPseq
+## 1. Performance for PPseq
 - This script loops across the data structure for the given animal and uses the behavuour synchronisation file which relates preprocessed bpod data (poke times) to ephys timestamps. 
-#### output 
+#### Output 
 - A performance score (how well the mouse did the sequence across trials) in ephys time coordinates, saved out as a '.csv' file (and plotted as a '.png') in a new folder in the recording directory called 'post_process_ppseq'
 - This script also creates a file called 'Time_intervales.txt.'. This file is used to decide which ephys timeframe to feed into PPseq. Currently it will be set to an arbitrary time range.
-#### aim
+#### Aim
 - This data allows us to chose an ephys time period when the animal was perfroming the task well/consitently. This can be done now based on the saved out performance plot, however, I reccomend that you wait until after running prepare data (step 3) once, as this will give you more information to make this decision - although at no point is this decision 'final'. it can be altered freely (see step 3) 
 
 ----
