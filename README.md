@@ -62,6 +62,7 @@ organised_data
         │   ├── [recording_2]: behav_sync, ephys, video
         │   └── ...
         └── ...
+```
 
 the final shared files across all recordings: 
 
