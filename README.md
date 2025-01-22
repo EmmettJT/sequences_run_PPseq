@@ -116,7 +116,9 @@ Once the input files are ready, you can run PPseq. This process is computational
 
 #### Steps:
 1. **Create a new conda environment.**
-2. **Activate the environment and clone the PPseq repository:**  
+2. **Activate the environment and clone the** [PPseq repository](https://github.com/EmmettJT/sequences_PPseq):
+
+
    ```bash
    git clone https://github.com/EmmettJT/sequences_PPseq/tree/emmett
    ```
@@ -185,6 +187,11 @@ Sleep timeframes should be processed using the Julia script `PPSeq_sleep_emmett.
    - Use the command `squeue` to monitor job progress.
 
 ---
+
+For more informaiton on running PPseq on the clsuter and changing PPseq paramters please refer to the following:
+-1. README of the [PPseq repository](https://github.com/EmmettJT/sequences_PPseq) 
+-2. The Methods section of our publication [Replay of Procedural Experience is Independent of the Hippocampus](https://www.biorxiv.org/content/10.1101/2024.06.05.597547v1.full.pdf) 
+-3. The [origional ppseq publication](https://pmc.ncbi.nlm.nih.gov/articles/PMC8734964/) 
 
 **Note:**  
 PPseq is computationally intensive and may take several hours or even days to complete, depending on the dataset size.
