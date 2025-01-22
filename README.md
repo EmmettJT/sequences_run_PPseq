@@ -189,8 +189,11 @@ Sleep timeframes should be processed using the Julia script `PPSeq_sleep_emmett.
 ---
 
 For more informaiton on running PPseq on the clsuter and changing PPseq paramters please refer to the following:
+
 -1. README of the [PPseq repository](https://github.com/EmmettJT/sequences_PPseq) 
+
 -2. The Methods section of our publication [Replay of Procedural Experience is Independent of the Hippocampus](https://www.biorxiv.org/content/10.1101/2024.06.05.597547v1.full.pdf) 
+
 -3. The [origional ppseq publication](https://pmc.ncbi.nlm.nih.gov/articles/PMC8734964/) 
 
 **Note:**  
