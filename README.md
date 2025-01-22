@@ -13,13 +13,26 @@ The aim of this repo is as follows
 
 
 # Steps
-1. 
+
+## 1 Performance for PPseq
+- This script loops across the data structure for the given animal and uses the behavuour synchronisation file which relates preprocessed bpod data (poke times) to ephys timestamps. 
+#### output 
+- A performance score (how well the mouse did the sequence across trials) in ephys time coordinates, saved out as a '.csv' file (and plotted as a '.png') in a new folder in the recording directory called 'post_process_ppseq'
+- This script also creates a file called 'Time_intervales.txt.'. This file is used to decide which ephys timeframe to feed into PPseq. Currently it will be set to an arbitrary time range.
+#### aim
+- This data allows us to chose an ephys time period when the animal was perfroming the task well/consitently. This can be done now based on the saved out performance plot, however, I reccomend that you wait until after running prepare data (step 3) once, as this will give you more information to make this decision - although at no point is this decision 'final'. it can be altered freely (see step 3) 
+
+----
+
+
+
+
+1. ff
 2. ff
-3. ff
-4. run prepare data script to generate PPseq input files
+3. run prepare data script to generate PPseq input files
+4. f
 5. f
-6. f
-7. 
+6. 
 
 
 
