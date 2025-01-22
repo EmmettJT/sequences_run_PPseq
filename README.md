@@ -112,32 +112,83 @@ Refine the time range and produce input files for PPseq.
 
 ### 4. Running PPseq
 
-Once the input files are ready, run PPseq. This is computationally intensive and should ideally be done on an HPC system.
+Once the input files are ready, you can run PPseq. This process is computationally intensive and should ideally be executed on an HPC system.
 
 #### Steps:
-1. Create a new conda environment
-2. Activate envionrment and clone the PPseq repository:  
-   https://github.com/EmmettJT/sequences_PPseq/tree/emmett
-   **note** this is a forked version of a private repo and so you will need to request access. 
-3. Clone the submodule:  
+1. **Create a new conda environment.**
+2. **Activate the environment and clone the PPseq repository:**  
+   ```bash
+   git clone https://github.com/EmmettJT/sequences_PPseq/tree/emmett
+   ```
+   **Note:** This is a forked version of a private repository, so you will need to request access.
+   
+3. **Clone the submodule:**  
    ```bash
    git submodule update --init --recursive
+   ```
 
-#### Awake runs
-Awake timeframes (during behaviour) should be run by calling the julia file  
+---
+
+### Awake Runs
+
+Awake timeframes (during behavior) should be processed using the Julia script `PPSeq_awake_emmett.jl`.
+
+1. **Edit the Julia script:**  
+   Open `PPSeq_awake_emmett.jl` in a text editor and update the `list_of_animals` variable. This should include all recordings (in the format `animalID_implant_recording`) for which you have prepared data.
+   
+2. **Run the script directly:**  
+   ```bash
+   julia PPSeq_awake_emmett.jl --data-directory <PATH_TO_PREPARED_DATA> \
+                               --num-threads <NUM_THREADS> \
+                               --results-directory <PATH_TO_OUTPUT> \
+                               --slurm-array-task-id <INDEX_FOR_LIST_OF_ANIMALS>
+   ```
+   - Replace `<PATH_TO_PREPARED_DATA>`, `<NUM_THREADS>`, `<PATH_TO_OUTPUT>`, and `<INDEX_FOR_LIST_OF_ANIMALS>` with the appropriate values.
+
+3. **Or use the provided SLURM batch file:**  
+   - Update the paths and modify the `#SBATCH` settings in `batch_awake_emmett` (e.g., adjust `--array=0-[NUMBER_OF_RECORDINGS_TO_RUN]`).
+   - Execute the SLURM file:  
+     ```bash
+     sbatch batch_awake_emmett
+     ```
+   - Use the command `squeue` to monitor job progress.
+
+---
+
+### Sleep Runs
+
+Sleep timeframes should be processed using the Julia script `PPSeq_sleep_emmett.jl`.
+
+1. **Edit the Julia script:**  
+   Open `PPSeq_sleep_emmett.jl` in a text editor and update the `list_of_animals` variable. This should include all recordings (in the format `animalID_implant_recording`) for which you have prepared data.
+   
+2. **Run the script directly:**  
+   ```bash
+   julia PPSeq_sleep_emmett.jl --data-directory <PATH_TO_PREPARED_DATA> \
+                               --num-threads <NUM_THREADS> \
+                               --results-directory <PATH_TO_OUTPUT> \
+                               --number-of-sequence-types <NUM_SEQUENCE_TYPES> \
+                               --sacred-directory <PATH_TO_AWAKE_PPSEQ_OUTPUT> \
+                               --slurm-array-task-id <INDEX_FOR_LIST_OF_ANIMALS>
+   ```
+   - Replace `<PATH_TO_PREPARED_DATA>`, `<NUM_THREADS>`, `<PATH_TO_OUTPUT>`, `<NUM_SEQUENCE_TYPES>`, `<PATH_TO_AWAKE_PPSEQ_OUTPUT>`, and `<INDEX_FOR_LIST_OF_ANIMALS>` with the appropriate values.
+   - **Key flags:**
+     - `--sacred-directory`: Points PPseq to the Awake output folder to use parameters determined during Awake training for sequence search in sleep.
+     - `--number-of-sequence-types`: Specifies how many sequences to fit. The default is 6. For sleep runs, it's recommended to use the number from Awake runs plus 2 (to account for non-task-related activity).
+
+3. **Or use the provided SLURM batch file:**  
+   - Update the paths, flags, and modify the `#SBATCH` settings in `batch_sleep_emmett` (e.g., adjust `--array=0-[NUMBER_OF_RECORDINGS_TO_RUN]`).
+   - Execute the SLURM file:  
+     ```bash
+     sbatch batch_sleep_emmett
+     ```
+   - Use the command `squeue` to monitor job progress.
+
+---
 
 **Note:**  
-PPseq may take hours or even days to complete, depending on the dataset size.
-
-
-
-
-
-
-
-
-
-
+PPseq is computationally intensive and may take several hours or even days to complete, depending on the dataset size.
+```
 
 
 
