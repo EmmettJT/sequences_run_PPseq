@@ -36,7 +36,6 @@ organised_data
 ```
 ----
 ## The final shared files across all recordings: 
-
 #### behav_sync
 - contains folders for each experimetnal section. these folders contain dataframes which align the three experimental clocks - ephys, video and behavioural data.
 #### ephys
@@ -45,7 +44,6 @@ organised_data
 #### video 
 - contains a file with the raw video files (wit their uncycled timestamp/trigger time dataframes)
 - contains a file with tracking data for each video (and each tracking type)
-- 
 **The scripts and paths in each notebook file should be reasonably easy to alter, in order to use a different file structure. However, the scripts also expect a certain format for the loaded data files themselves. This may make the scirpts difficult to adapt but understanding the logic of each step should mean that you can adapt the scripts for your data - please see the preprocessing repo mentioned above to understand what data each file contains. 
 
 
