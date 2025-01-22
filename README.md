@@ -50,6 +50,7 @@ an organised data file containing animal files which themselves containt a file 
 
 to see an example of this structure for yourself go to 'ceph\projects\sequence_squad\revision_data\organised_data\'
 
+```plaintext
 organised_data
     └── animals
         ├── [animal_1]
