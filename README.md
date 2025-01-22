@@ -188,8 +188,6 @@ Sleep timeframes should be processed using the Julia script `PPSeq_sleep_emmett.
 
 **Note:**  
 PPseq is computationally intensive and may take several hours or even days to complete, depending on the dataset size.
-```
-
 
 
 
