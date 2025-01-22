@@ -14,7 +14,7 @@ The aim of this repo is as follows
 3. Execute a run of PPseq in awake or replay mode
 
 
-## Context:
+## fyi:
 This pipeline assumes data has been preprocessed using the following repo: https://github.com/EmmettJT/sequences_neuropixel_preprocess
 The scripts are expecting certain files and a certain file structure to exist already. 
 
@@ -59,7 +59,7 @@ organised_data
 
 
 
-# Steps
+# PROCESSING GUIDE
 
 ## 1. Performance for PPseq
 - This script loops across the data structure for the given animal and uses the behavuour synchronisation file which relates preprocessed bpod data (poke times) to ephys timestamps. 
