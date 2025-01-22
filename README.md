@@ -11,7 +11,7 @@ Emmett J Thompson
 The aim of this repo is as follows
 1. Take processed data use it to decide on a timing range in which to run ppseq, 
 2. Produce the input files PPseq needs in order to run
-3. Execute a run of PPseq in awake or replay mode
+3. Execute a run of PPseq in awake or replay mode (To run data with Ppseq in replay mode, the data first has to be PPseq'ed in Awake mode to train the model) 
 
 **This pipeline assumes data has been preprocessed using the following repo: https://github.com/EmmettJT/sequences_neuropixel_preprocess
 The scripts are expecting certain files and a certain file structure to exist already. 
@@ -52,12 +52,10 @@ organised_data
 ----
 
 
-
-
 # PROCESSING GUIDE
 
 ## 1. Performance for PPseq
-- This script loops across the data structure for the given animal and uses the behavuour synchronisation file which relates preprocessed bpod data (poke times) to ephys timestamps. 
+- This script loops across the data structure for the given animal and uses the behaviour synchronisation file which relates preprocessed bpod data (poke times) to ephys timestamps. 
 #### Output 
 - A performance score (how well the mouse did the sequence across trials) in ephys time coordinates, saved out as a '.csv' file (and plotted as a '.png') in a new folder in the recording directory called 'post_process_ppseq'
 - This script also creates a file called 'Time_intervales.txt.'. This file is used to decide which ephys timeframe to feed into PPseq. Currently it will be set to an arbitrary time range.
@@ -66,16 +64,43 @@ organised_data
 
 ----
 
+## 2. Find sleeping range
+- This script loops across the data structure (all recordings) for a given animal and uses the sleep tracking files along with the synchronisation files.
+#### Output
+- a average moevment velocity for pre and postsleep periods, saved out as '.csv' files in the 'post_process_ppseq' folder
+#### Aim
+
+----
+
+## 3. Prepare data (for ppseq)
+- This script takes in a list of recordings (in the format animal_implant_recording) and produces prepared data for a PPseq run
+
+#### Parameters
+The most impoartant parameters are *Time_span* and *region*.
+Time_span: eg. 'Awake' or 'PostSleep' refers to the timespan defined in 'Time_intervales.txt.'. You can define mulitple timespans (not reccomended for Awake training), these should be set as a list of lists. eg. two Awake timeframes 1-2 and 3-4 = 'Awake,[[time1,time2],[time3,time4]]'
+region: this paramter refers to the brain region of interest. The spike dataframes which are fed into this script should contain a column defineing their location in the brain. This paramter defes which units get excluded or inlcuded based on this information
+
+Other paramterd: 
+min_fano_factor & max_fano_factor - these filter the data based on the ratio of the variance to the mean number of spikes in a neuron
+max_firing_rate - removes neurons with a very high firing rate (Ppseq fits to spikes so tonic interneurons with huge numbers of spikes will dominate the model)
+single_or_multiunits - use units kilosort has defined as good or mua (reccomeded to use 'both') 
+shuffle - if True, shuffles the neuron IDs (for testing Ppseq) 
+visualise = 'True' will produce plots (This slows things down but is recomended) 
+
+#### Output
+- params json and spikes file (from the defined time interval) in a prepared data folder
+- Also produces a folder called 'plots' which shows the chosed time range in context with firing rate, movement velocity, trial occurance, and task performance. 
+
+#### Aim
 
 
+----
 
-1. ff
-2. ff
-3. run prepare data script to generate PPseq input files
-4. f
-5. f
-6. 
-
+## 3. Run PPSeq
+- This script takes in a list of recordings (in the format animal_implant_recording) and produces prepared data for a PPseq run 
+#### Awake mode
+- a average moevment velocity for pre and postsleep periods, saved out as '.csv' files in the 'post_process_ppseq' folder
+#### Replay mode
 
 
 Clone the PPseq repo:
