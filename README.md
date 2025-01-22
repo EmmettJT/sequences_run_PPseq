@@ -5,19 +5,20 @@ Processing pipeline for prepareing data for a PPseq run and executing a PPseq ru
 Emmett J Thompson
 
 ----
-# What does this repo do?
+# IMPORTANT INFO
+----
+## What does this repo do?
 The aim of this repo is as follows
 1. Take processed data use it to decide on a timing range in which to run ppseq, 
 2. Produce the input files PPseq needs in order to run
 3. Execute a run of PPseq in awake or replay mode
 
 
-## Important:
+## Context:
 This pipeline assumes data has been preprocessed using the following repo: https://github.com/EmmettJT/sequences_neuropixel_preprocess
 The scripts are expecting certain files and a certain file structure to exist already. 
 
 ## File structure: 
-
 an organised data file containing animal files which themselves containt a file for each recoridng for that animal. Each recording contains the same information: ephys, video and syncronisation files
 
 to see an example of this structure for yourself go to 'ceph\projects\sequence_squad\revision_data\organised_data\'
