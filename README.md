@@ -129,6 +129,13 @@ Once the input files are ready, you can run PPseq. This process is computational
    git submodule update --init --recursive
    ```
 
+4. **Switch submodule to branch "sacredSeqBranch"**
+
+   ```bash
+   cd PPSeq.jl
+   git checkout sacredSeqBranch
+   ```
+
 ---
 
 ### Awake Runs
