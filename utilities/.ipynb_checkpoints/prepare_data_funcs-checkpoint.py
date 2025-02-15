@@ -287,51 +287,36 @@ def prepare_data(args):
         print(post_sleep_file)
         ##
         perf_score=os.path.join(full_path_to_data_ppseq,"Performance_score.csv")
-        sleep_data = []
-        Ephys = []
-        v = []
-        if os.path.isfile(pre_sleep_file):
-            print("      found pre file")
-            columns = defaultdict(list)  # each value in each column is appended to a list
-            with open(pre_sleep_file) as f:
-                reader = csv.DictReader(f)  # read rows into a dictionary format
-                for row in reader:  # read a row as {column1: value1, column2: value2,...}
-                    for (k, l) in row.items():  # go over each column name and value
-                        columns[k].append(l)  # append the value into the appropriate list
-            array_1 = np.array(columns['v'])
-            array_2 = np.array(columns['Ephys'])
-            for k in array_2:
-                Ephys.append(literal_eval(k))
-            for k in array_1:
-                v.append(literal_eval(k))
-            print("      pre-sleep data successfully loaded")
 
-        else:
-            print("      No pre-sleep data")
+        smoothed_pre_sleep_data = []
+        smoothed_post_sleep_data = []
+        pre_sleep_ephys_data = []
+        post_sleep_ephys_data = []
         if os.path.isfile(post_sleep_file):
             print("      found post file")
-            columns = defaultdict(list)  # each value in each column is appended to a list
-            with open(post_sleep_file) as f:
-                reader = csv.DictReader(f)  # read rows into a dictionary format
-                for row in reader:  # read a row as {column1: value1, column2: value2,...}
-                    for (k, l) in row.items():  # go over each column name and value
-                        columns[k].append(l)  # append the value into the appropriate list
-            array_1 = np.array(columns['v'])
-            array_2 = np.array(columns['Ephys'])
-            for k in array_2:
-                Ephys.append(literal_eval(k))
-            for k in array_1:
-                v.append(literal_eval(k))
-            print("      post-sleep data successfully loaded")
-        else: print("      No post-sleep data")
-        print("    • Smoothing sleep data")
-        if os.path.isfile(post_sleep_file):
-             if os.path.isfile(pre_sleep_file):
-                sleep_data = np.vstack([Ephys, v])
-                dt = np.mean(sleep_data[0, 1:] - sleep_data[0, :-1])
-                k = int(5 / dt)
-                smoothed_sleep_data = np.array([np.mean(sleep_data[1, max(0, i - k):min(len(sleep_data[1]) - 1, i + k)]) for i in
-                 range(len(sleep_data[0]))])
+            print("    • Smoothing sleep data")
+            post_sleep_df = pd.read_csv(post_sleep_file)
+            sleep_data = np.vstack([post_sleep_df.Ephys, post_sleep_df.v])
+            dt = np.mean(sleep_data[0, 1:] - sleep_data[0, :-1])
+            k = int(5 / dt)
+            smoothed_post_sleep_data = np.array([np.mean(sleep_data[1, max(0, i - k):min(len(sleep_data[1]) - 1, i + k)]) for i in
+                range(len(sleep_data[0]))])
+            smoothed_post_sleep_data = list(smoothed_post_sleep_data)
+            post_sleep_ephys_data = list(post_sleep_df.Ephys.values)
+            
+        if os.path.isfile(pre_sleep_file):
+            print("      found pre file")
+            print("    • Smoothing sleep data")
+            post_sleep_df = pd.read_csv(post_sleep_file)
+            sleep_data = np.vstack([post_sleep_df.Ephys, post_sleep_df.v])
+            dt = np.mean(sleep_data[0, 1:] - sleep_data[0, :-1])
+            k = int(5 / dt)
+            smoothed_pre_sleep_data = np.array([np.mean(sleep_data[1, max(0, i - k):min(len(sleep_data[1]) - 1, i + k)]) for i in
+                range(len(sleep_data[0]))])
+            smoothed_pre_sleep_data = list(smoothed_pre_sleep_data)
+            pre_sleep_ephys_data = list(post_sleep_df.Ephys.values)
+                        
+  
         Ephys_time = []
         perf = []   
         columns = defaultdict(list)  
@@ -347,10 +332,10 @@ def prepare_data(args):
             for k in array_1:
                 perf.append(literal_eval(k))
             print("        Perf loaded"  )
-        if len(sleep_data) > 0:
+        if len(smoothed_post_sleep_data + smoothed_pre_sleep_data) > 0:
             ax2 = ax.twinx()
             # make a plot with different y-axis using second axis object
-            ax2.plot(sleep_data[0,:], smoothed_sleep_data, color='C2')
+            ax2.plot(pre_sleep_ephys_data+post_sleep_ephys_data, smoothed_pre_sleep_data + smoothed_post_sleep_data, color='C2')
             ax2.set_ylabel("Vel / arb_units", color="C2")
 
         ax3 = ax.twinx()

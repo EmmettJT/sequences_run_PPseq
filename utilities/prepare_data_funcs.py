@@ -290,6 +290,8 @@ def prepare_data(args):
 
         smoothed_pre_sleep_data = []
         smoothed_post_sleep_data = []
+        pre_sleep_ephys_data = []
+        post_sleep_ephys_data = []
         if os.path.isfile(post_sleep_file):
             print("      found post file")
             print("    • Smoothing sleep data")
