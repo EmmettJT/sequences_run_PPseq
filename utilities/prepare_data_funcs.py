@@ -280,8 +280,8 @@ def prepare_data(args):
 
         # visualising sleep data
         print(f"    • Searching for sleep data at {full_path_to_data_ppseq}")
-        pre_sleep_file = os.path.join(full_path_to_data_ppseq, "velocity_mice_1_presleep.csv")
-        post_sleep_file = os.path.join(full_path_to_data_ppseq, "velocity_mice_3_post_sleep.csv")
+        pre_sleep_file = os.path.join(full_path_to_data_ppseq, "Probe"+args["probe"]+"_velocity_mice_1_presleep.csv")
+        post_sleep_file = os.path.join(full_path_to_data_ppseq, "Probe"+args["probe"]+"_velocity_mice_3_post_sleep.csv")
         ###
         print(os.listdir(full_path_to_data_ppseq))
         print(post_sleep_file)
