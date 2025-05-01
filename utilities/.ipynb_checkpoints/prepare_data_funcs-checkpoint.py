@@ -307,14 +307,14 @@ def prepare_data(args):
         if os.path.isfile(pre_sleep_file):
             print("      found pre file")
             print("    • Smoothing sleep data")
-            post_sleep_df = pd.read_csv(post_sleep_file)
-            sleep_data = np.vstack([post_sleep_df.Ephys, post_sleep_df.v])
+            pre_sleep_df = pd.read_csv(pre_sleep_file)
+            sleep_data = np.vstack([pre_sleep_df.Ephys, pre_sleep_df.v])
             dt = np.mean(sleep_data[0, 1:] - sleep_data[0, :-1])
             k = int(5 / dt)
             smoothed_pre_sleep_data = np.array([np.mean(sleep_data[1, max(0, i - k):min(len(sleep_data[1]) - 1, i + k)]) for i in
                 range(len(sleep_data[0]))])
             smoothed_pre_sleep_data = list(smoothed_pre_sleep_data)
-            pre_sleep_ephys_data = list(post_sleep_df.Ephys.values)
+            pre_sleep_ephys_data = list(pre_sleep_df.Ephys.values)
                         
   
         Ephys_time = []
