@@ -64,6 +64,7 @@ def prepare_data(args):
     if args["probe"] == "B":
         full_path_to_spikes_ = os.path.join(full_path_to_spikes_, "probeB")
     mouse_implant_recording_ = args["mouse_implant_recording"] 
+    
 
     if args['use_emmett_curation'] == True: 
         spike_directory = os.path.join(full_path_to_spikes_,"curated_spikes")
