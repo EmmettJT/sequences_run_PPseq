@@ -205,7 +205,9 @@ For more informaiton on running PPseq on the clsuter and changing PPseq paramter
 PPseq is computationally intensive and may take several hours or even days to complete, depending on the dataset size.
 
 
+### Hyperparamter settings
 
+To optimise the model to your data please see the following repo: https://github.com/EmmettJT/hyperparamter_grid_search_PPSeq
 
 
 
